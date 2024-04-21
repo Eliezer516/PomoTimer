@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>NeutralinoJs sample app</title>
+    <link rel="stylesheet" href="/styles/pico.grey.min.css">
+    <link rel="stylesheet" href="/styles/styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <article>
+        <header>
+          <progress value="0" max="100"></progress>
+        </header>
+
+        <div class="sesion-info-container">
+          <span id="session-info">Iniciar</span>
+        </div>
+
+        <div id="timer">
+          <h1><span id="minutes">25</span>:<span id="seconds">00</span></h1>
+        </div>
+
+        <footer>
+          <button id="startBtn">Iniciar</button>
+          <button id="pauseBtn">Pausar</button>
+          <button id="resetBtn">Reiniciar</button>
+        </footer>
+      </article>
+    </div>
+    <!-- Neutralino.js client. This file is gitignored, 
+        because `neu update` typically downloads it.
+        Avoid copy-pasting it. 
+        -->
+    <script src="js/neutralino.js"></script>
+    <!-- Your app's source files -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
