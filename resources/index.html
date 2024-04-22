@@ -15,6 +15,8 @@
 
         <div class="sesion-info-container">
           <span id="session-info">Iniciar</span>
+          <audio id="sessionEndSound" src="/sounds/end-session.mp3"></audio>
+          <audio id="startSound" src="./sounds/start-sound.mp3"></audio>
         </div>
 
         <div id="timer">
@@ -23,7 +25,7 @@
 
         <footer>
           <button id="startBtn">Iniciar</button>
-          <button id="pauseBtn">Pausar</button>
+          <button id="pauseResumeButton" disabled>Pausar</button>
           <button id="resetBtn">Reiniciar</button>
         </footer>
       </article>

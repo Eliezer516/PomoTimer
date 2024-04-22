@@ -6,7 +6,7 @@ const pauseButton = document.getElementById("pauseBtn");
 const resetButton = document.getElementById("resetBtn");
 const progressBar = document.querySelector('progress')
 const sessionInfo = document.querySelector('#session-info')
-const draggWindow = document.querySelector("#dragg-window")
+const pauseResumeButton = document.querySelector("#pauseResumeButton")
 const styles = document.querySelector('link')
 
 const totalWorkSessions = 4;
@@ -18,12 +18,17 @@ let sessionCounter = 0;
 let isWorkSession = true; // Indica si es una sesión de trabajo o de descanso
 let secondsRemaining;
 let intervalId;
+let counterStart = false
 
 
 
 
 function startTimer() {
-  playStartSound()
+
+  if (!counterStart) {
+    playStartSound()
+    counterStart = true
+  }
   
   if (intervalId) {
     clearInterval(intervalId);
@@ -31,37 +36,33 @@ function startTimer() {
 
   if (isWorkSession) {
     secondsRemaining = workSessionDuration;
-    setTimeout(() => {
-      styles.href = 'http://localhost:3000/styles/pico.green.min.css'
-      sessionInfo.textContent = '¡A trabajar!'
-    }, 500)
+    sessionInfo.textContent = '¡A trabajar!'
+    styles.href = 'http://localhost:3000/styles/pico.green.min.css'
   } else {
     secondsRemaining = isLongBreakSession() ? longBreakDuration : shortBreakDuration;
-    setTimeout(() => {
-      styles.href = 'http://localhost:3000/styles/pico.blue.min.css'
-      sessionInfo.textContent = '¡Hora de un descanso!'
-    }, 500)
-
+    sessionInfo.textContent = '¡Hora de un descanso!'
+    styles.href = 'http://localhost:3000/styles/pico.blue.min.css'
     if (isLongBreakSession()) {
-      setTimeout(() => {
-        styles.href = 'http://localhost:3000/styles/pico.orange.min.css'
-        sessionInfo.textContent = '¡A descansar de verdad!'
-      }, 500)
+      sessionInfo.textContent = '¡A descansar de verdad!'
+      styles.href = 'http://localhost:3000/styles/pico.orange.min.css'
     }
   }
 
   intervalId = setInterval(updateTimer, 1000);
   startButton.disabled = true;
-  pauseButton.disabled = false;
   resetButton.disabled = false;
+  pauseResumeButton.disabled = false;
 }
 
-function pauseTimer() {
-  clearInterval(intervalId);
-  intervalId = null;
-  startButton.disabled = false;
-  pauseButton.disabled = true;
-  resetButton.disabled = false;
+function toggleTimer() {
+  if (intervalId) {
+    clearInterval(intervalId);
+    intervalId = null;
+    pauseResumeButton.textContent = "Continuar";
+  } else {
+    intervalId = setInterval(updateTimer, 1000);
+    pauseResumeButton.textContent = "Pausar";
+  }
 }
 
 function resetTimer() {
@@ -72,10 +73,10 @@ function resetTimer() {
   secondsRemaining = workSessionDuration;
   updateTimer();
   startButton.disabled = false;
-  pauseButton.disabled = true;
   resetButton.disabled = true;
-    styles.href = 'http://localhost:3000/styles/pico.grey.min.css'
-
+  pauseResumeButton.textContent = "Pausar"
+  styles.href = 'http://localhost:3000/styles/pico.grey.min.css'
+  counterStart = false
 }
 
 function updateTimer() {
@@ -129,17 +130,17 @@ function padTime(time) {
 }
 
 function playSessionEndSound() {
-  const sessionEndSound = new Audio("/sounds/end-session.mp3"); // Ruta al archivo de sonido
+  const sessionEndSound = document.getElementById("sessionEndSound");
   sessionEndSound.play();
 }
 
 function playStartSound() {
-  const startSound = new Audio("/sounds/start-sound.mp3")
+  const startSound = document.getElementById("startSound");
   startSound.play()
 }
 // Asociamos los eventos a los botones
 startButton.addEventListener("click", startTimer);
-pauseButton.addEventListener("click", pauseTimer);
+pauseResumeButton.addEventListener("click", toggleTimer);
 resetButton.addEventListener("click", resetTimer);
 
 Neutralino.init()

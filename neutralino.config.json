@@ -34,7 +34,7 @@
   },
   "modes": {
     "window": {
-      "title": "Pomodoro App",
+      "title": "PomoTimer",
       "width": 450,
       "height": 400,
       "center": true,
@@ -78,5 +78,27 @@
     "clientLibrary": "/resources/js/neutralino.js",
     "binaryVersion": "5.1.0",
     "clientVersion": "5.1.0"
+  },
+  "buildScript": {
+    "mac": {
+      "architecture": ["x64", "arm64", "universal"],
+      "minimumOS": "10.13.0",
+      "appName": "ExtBunDemo",
+      "appBundleName": "ExtBunDemo",
+      "appIdentifier": "com.marketmix.ext.bun.demo",
+      "appIcon":  "icon.icns"
+    },
+    "win": {
+      "architecture": ["x64"],
+      "appName": "PomoTimer",
+      "appIcon": "icon.ico"
+    },
+    "linux": {
+      "architecture": ["x64", "arm64", "armhf"],
+      "appName": "PomoTimer",
+      "appIcon": "icon.png",
+      "appPath":  "/usr/share/ExtBunDemo",
+      "appIconLocation": "/usr/share/ExtBunDemo/icon.png"
+    }
   }
 }
