@@ -97,8 +97,8 @@
       "architecture": ["x64", "arm64", "armhf"],
       "appName": "PomoTimer",
       "appIcon": "icon.png",
-      "appPath":  "/usr/share/ExtBunDemo",
-      "appIconLocation": "/usr/share/ExtBunDemo/icon.png"
+      "appPath":  "/usr/share/PomoTimer",
+      "appIconLocation": "/usr/share/PomoTimer/icon.png"
     }
   }
 }
