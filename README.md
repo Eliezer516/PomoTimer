@@ -12,9 +12,7 @@ PomoTimer es una herramienta de gestión del tiempo basada en la técnica de Pom
 
 ## Capturas de Pantalla
 
-![Captura de Pantalla 1](ruta/al/captura-1.png)
-![Captura de Pantalla 2](ruta/al/captura-2.png)
-![Captura de Pantalla 3](ruta/al/captura-3.png)
+![Captura de Pantalla 1](screenshot_1.png)
 
 ## Requisitos del Sistema
 
